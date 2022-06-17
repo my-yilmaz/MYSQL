@@ -53,6 +53,11 @@ select * from personel;
 Belirttiğimiz 2 veri arasindaki bilgileri listeler
 Between de kullandiğimiz değerler de dahildir.
 */
+-- AND
+/*
+AND (ve); Belirtilen şatların her ikisi de gerçekleşiyorsa o kayıt listelenir
+Bir tanesi gerçeklşmez ise listelenmez. 
+*/
 
 -- SORU05: id'si 1002 ile 1005 arasında olan personel bilgilerini listele
 select * from personel where id between 1002 and 1005;
