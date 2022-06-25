@@ -37,10 +37,8 @@ INSERT INTO ogrenciler VALUES(125, 'Kemal Yasa', 'Hasan',85);
 INSERT INTO ogrenciler VALUES(126, 'Nesibe Yilmaz', 'Ayse',95);
 INSERT INTO ogrenciler VALUES(127, 'Mustafa Bak', 'Can',99);
 INSERT INTO ogrenciler VALUES(127, 'Mustafa Bak', 'Ali', 99);
-SET autocommit=0;
-SET SQL_SAFE_UPDATES = 0;
-select * from ogrenciler;
 
+select * from ogrenciler;
 
     
 /* =============================================================================
@@ -48,7 +46,7 @@ select * from ogrenciler;
 ===============================================================================*/     
 
 -- SORU1: id'si 124 olan ogrenciyi siliniz.
-delete from ogrenciler where id=124; 
+delete from ogrenciler where id=124;
  
  
 -- SORU2: ismi Kemal Yasa olan satırını siliniz.
@@ -100,7 +98,7 @@ INSERT INTO ogrenciler VALUES(126, 'Nesibe Yilmaz', 'Ayse',95);
 INSERT INTO ogrenciler VALUES(127, 'Mustafa Bak', 'Can',99);
 INSERT INTO ogrenciler VALUES(127, 'Mustafa Bak', 'Ali', 99);
 savepoint abc;
-SET autocommit=0;
+
 -- savepoint komutuyla tabloları yanlışlıkla silinmeye karşı korumaya almış oluyoruz 
 
 -- savepoint sikintisi varsa -> SET autocommit=0; 
@@ -110,7 +108,7 @@ select * from ogrenciler;
 
 delete from ogrenciler;
 
-rollback to abc; 
+rollback to abc;
 -- rollback komutu ile silinen verileri geri getiriyoruz.
 
 drop table ogrenciler;

@@ -64,7 +64,7 @@ select isim, maas, sehir from calisanlar where isyeri in (select marka_isim from
 -- SORU3: Ankara’da calisani olan markalarin marka id'lerini ve calisan sayilarini listeleyiniz.
 select marka_id, calisan_sayisi from markalar where marka_isim in('Adidas', 'Vakko', 'Pierre Cardin');
 
--- ('Adidas', 'Vakko', 'Pierre Cardin') bunu verecek kodu yaziyoruz
+-- ('Adidas', 'LCWaikiki', 'Pierre Cardin') bunu verecek kodu yaziyoruz
 select isyeri from calisanlar where sehir = 'Ankara';
 
 select marka_id, calisan_sayisi from markalar where marka_isim
@@ -126,3 +126,6 @@ select marka_isim, calisan_sayisi, (select max(maas) from calisanlar where marka
 SELECT marka_id, marka_isim, (X) FROM MARKALAR;
 
 SELECT marka_id, marka_isim, (select count(sehir) from calisanlar where marka_isim = isyeri) as sehir_sayisi FROM MARKALAR;
+
+
+

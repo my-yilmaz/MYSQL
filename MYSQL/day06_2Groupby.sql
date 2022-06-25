@@ -52,42 +52,67 @@ select * from personel;
 
 
 -- SORU01: personelin calıştığı ülkeleri listeleyiniz
+select ulke from personel group by ulke;
 
-
-
+select * from personel group by ulke;
+-- yukaridaki kod maclerde hata verdi
+-- windowslarda calisti
+-- bu sorgulam yaniş olur. group by ile tabloda geçen isimleri aliriz.
 
 -- SORU02: Ülkelere göre ortalama maaşları listeleyiniz
-
+select ulke, round(avg(maas), 2) as ortalama_maas
+from personel
+group by ulke;
 
 
 -- SORU03: Her ülkede kaç çalışan olduğunu sorgulayınız.
+select ulke, count(ad) as calisan_sayisi
+from personel
+group by ulke;
 
+select ulke, count(*) as calisan_sayisi
+from personel
+group by ulke;
 
 
 -- SORU04: Maas ortalamasını bayanlar ve baylar olarak sorgulayınız
-
+select cinsiyet, round(avg(maas)) as ORTALAMA_MAAS
+from personel
+group by cinsiyet;
 
 
 -- SORU05: Personelin, ulkelere göre ve şehirlere göre gruplayarak sorgulayın
-
+select ulke, sehir from personel group by ulke, sehir;
 
 
 -- SORU06: Personelin, ulkelere göre ve şehirler göre calışan sayısını sorgulayın.
-
+select ulke, sehir, count(*) as calisan_sayisi
+from personel
+group by ulke, sehir;
 
 
 -- SORU07: Her ulke için bay ve bayan çalışan sayısı ve yaş ortalamasını sorgulayınız.
+select ulke, cinsiyet, count(*) as calisan_sayisi, round(avg(yas)) as yas_ortalamasi
+from personel
+group by ulke, cinsiyet;
 
 
 
 -- SORU08: Her ulke için bay ve bayan çalışan sayısı ve yaş ortalamasını  ve maası 30000 den büyük olanları sorgulayınız.
-
+select ulke, cinsiyet, count(*) as kisi, round(avg(yas)) as yas_ortalamasi
+from personel
+where maas > 30000
+group by ulke, cinsiyet;
 
 
 
 -- SORU09: Her ulke için; bay ve bayan çalışan sayısı, yaş ortalamasını, maaşı 30000 den büyük olanları
 -- ve ortalama yaşı büyükten küçüğe doğru sıralayınız.
-
+select ulke, cinsiyet, count(*) as kisi, round(avg(yas)) as ortalama_yas
+from personel
+where maas > 30000
+group by ulke, cinsiyet
+order by ortalama_yas desc;
 
 
 
@@ -112,24 +137,41 @@ INSERT INTO manav VALUES( 'Veli', 'Elma', 3);
 INSERT INTO manav VALUES( 'Ayse', 'Uzum', 4);
 INSERT INTO manav VALUES( 'Ali', null, 2);
 
+select * from manav;
 
--- SORU10: kisi ismine ve urun adına göre satılan ürünlerin toplamını
+
+-- SORU10: kisi ismine ve urun adına göre; satılan ürünlerin toplamını
 --  gruplandıran ve isime göre ters sırasıda listeyen sorguyu yazınız.
+select isim, urun_adi, sum(urun_miktari) as taplom_urun
+from manav
+group by isim, urun_adi
+order by isim desc;
+
+
 
 
 -- SORU11: Kişi ismine ve ürün adına göre (gruplayarak) satılan ürünleri toplamını bulan
 -- ve bu toplam değeri 3 ve fazlası olan kayıtları, toplam ürün miktarına göre büyükten küçüğe listeleyiniz.
+select isim, urun_adi, sum(urun_miktari) as toplam_urun
+from manav
+group by isim, urun_adi
+having toplam_urun >=3
+order by toplam_urun desc;
+
+-- aggregate fonksiyon kullandiysak, group by dan sonra where yerine having kullanacagiz.
+-- where kullanamayiz çünkü sum(urun_miktari) as toplam_urun
+-- toplam_urun'ü where ile kullanmayaiz. çünkü aggregate fonksiyondan geliyor. 
+
 
 
 
 -- SORU12: Satılan urun_adi'na göre gruplayarak MAX ürün sayılarını sıralayarak listeleyen sorgu yazınız.
 -- NOT: Sorgu sadece MAX urun_miktari MIN urun_miktari na eşit olmayan kayıtları listelemelidir.
-
-
-
-
-
-
+select urun_adi, max(urun_miktari)
+from manav
+group by urun_adi
+having max(urun_miktari) <> min(urun_miktari)	-- < > yerine != kullanabilir.
+order by max(urun_miktari);
 
 
 
@@ -145,15 +187,20 @@ INSERT INTO manav VALUES( 'Ali', null, 2);
 ======================================================================================= */
 
 -- Satılan meyve türlerinin sayısını listeleyen sorgu
+select urun_adi from manav;
+
+select distinct urun_adi from manav;
 
 
 
 -- Satılan farklı meyve türlerinin sayısını listeleyen sorgu
+select count(distinct urun_adi) from manav;
 
 
--- satılan meyve + isimleri farklı olanları listeleyen sorgu
-
+-- satılan meyve + satin alan isimleri farklı olanları listeleyen sorgu
+select distinct urun_adi, isim from manav;
 
 
 -- satılan meyvelerin urun_miktarlarının benzersiz olanlarının toplamlarını listeleyen sorgu
+select sum(distinct urun_miktari) from manav;
 

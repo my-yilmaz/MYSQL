@@ -32,10 +32,10 @@ INSERT INTO calisanlar VALUES('10003', 'CAN', 5000, '2018-04-14');
 INSERT INTO calisanlar VALUES('10007', 'CAN', 5000, '2018-04-14'); -- UNiQUE
 INSERT INTO calisanlar VALUES('10009', 'cem', '', '2018-04-14');
 INSERT INTO calisanlar VALUES('', 'osman', 2000, '2018-04-14');
-INSERT INTO calisanlar VALUES('', 'osman can', 2000, '2018-04-14');
-INSERT INTO calisanlar VALUES('', 'veli can', 6000, '2018-04-14');
-INSERT INTO calisanlar VALUES( '10002', 'ayse Yılmaz' ,12000, '2018-04-14');
-INSERT INTO calisanlar VALUES( null, 'filiz ' ,12000, '2018-04-14');
+INSERT INTO calisanlar VALUES('', 'osman can', 2000, '2018-04-14'); -- primarty key
+INSERT INTO calisanlar VALUES('', 'veli can', 6000, '2018-04-14'); -- primarty key
+INSERT INTO calisanlar VALUES( '10002', 'ayse Yılmaz' ,12000, '2018-04-14'); -- 10002 tekrar etmez
+INSERT INTO calisanlar VALUES( null, 'filiz ' ,12000, '2018-04-14'); -- id null olamaz
      
 select * from calisanlar;
      
@@ -91,6 +91,7 @@ delete from calisanlar where id = 10002; -- parent
 -- bağlantı olduğu için silemiyoruz.
      
 delete from adresler where adres_id= 10002; -- child
+-- child daki veriyi silebiliyoruz
      
      
 /*============================== ON DELETE CASCADE =============================
@@ -141,7 +142,8 @@ select * from notlar;
 SELECT * FROM talebeler, notlar WHERE talebeler.id = notlar.talebe_id;
    
 delete from notlar where talebe_id='123';-- child
--- child tablodaki veriyi sildiğimiz zaman sadece child'daki veri silinir. parent taki veri silinmez.
+-- child tablodaki veriyi sildiğimiz zaman sadece child'daki veri silinir.
+-- parent taki veri silinmez.
      
 delete from talebeler where id='126';-- parent
 -- parent tablodaki veriyi sildiğimiz zaman child'daki veride silinir.

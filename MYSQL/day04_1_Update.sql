@@ -37,7 +37,10 @@ INSERT INTO urunler VALUES(104, 1007,'Phone', 'Aslan Yılmaz');
 SELECT * FROM urunler;
 
 -- SORU1: İki tabloyu birleştirerek listeleyiniz.
-select *from tedarikciler, urunler where tedarikciler.vergi_no=urunler.ted_vergino;
+SELECT * from tedarikciler, urunler where tedarikciler.vergi_no = urunler.ted_vergino;
+
+
+
 -- UPDATE - SET     
 -- SYNTAX
 -- UPDATE tablo_adı
@@ -46,7 +49,6 @@ select *from tedarikciler, urunler where tedarikciler.vergi_no=urunler.ted_vergi
 
 
 -- SORU2: vergi_no’su 102 olan tedarikcinin (firma) ismini 'Vestel' olarak güncelleyeniz.
-
 update tedarikciler
 set firma_ismi = 'Vestel'
 where vergi_no= '102';
@@ -59,11 +61,6 @@ update tedarikciler set firma_ismi = 'CASPER';
 
 
 -- SORU4: vergi_no’su 101 olan tedarikcinin ismini 'casper' ve irtibat_ismi’ni 'Ali Veli' olarak güncelleyiniz.
-update tedarikciler set firma_ismi='casper' where vergi_no=101;
-update tedarikciler set irtibat_ismi='Ali Veli' where vergi_no=101;
-
-
-
 update tedarikciler set firma_ismi = 'casper' where vergi_no = 101;
 update tedarikciler set irtibat_ismi = 'Ali Veli' where vergi_no = 101;
 
@@ -81,7 +78,7 @@ update urunler set urun_isim = 'Telefon' where urun_isim = 'Phone';
 SELECT * FROM urunler;
 
 -- SORU7: urunler tablosundaki urun_id değeri 1004'ten büyük olanların urun_id 1 arttrn.
-update urunler set urun_id=urun_id+1 where urun_id>1004;
+update urunler set urun_id = urun_id+1 where urun_id>1004;
 
 -- SORU8: urunler tablosundaki tüm ürünlerin urun_id değerini ted_vergino sutun değerleri ile toplayarak güncelleyiniz.
 update urunler set urun_id = urun_id + ted_vergino;
@@ -102,6 +99,7 @@ SELECT * FROM urunler;
 --  select firma_ismi from tedarikciler where irtibat_ismi='Adam Eve';
 
  -- SORU10: Laptop satin alan musterilerin ismini, firma_ismi Apple’in irtibat_isim'i ile degistirin.
+ 
  update urunler set musteri_isim = 'Adam Eve' where urun_isim='Laptop';
  select irtibat_ismi from tedarikciler where firma_ismi ='Apple';
  

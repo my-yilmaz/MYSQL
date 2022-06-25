@@ -30,7 +30,6 @@ select * from personel;
 -- SORU1: personel tablosuna ulke_isim adinda ve default degeri 'Turkiye' olan yeni bir sutun ekleyiniz.
 alter table personel add ulke_isim varchar(20) default 'Turkiye';
 
-
 -- cinsiyet sutunu ekleyiniz
 alter table personel add cinsiyet char default 'E';
 

@@ -62,5 +62,3 @@ select isim, urun_adi, sum(urun_miktari) as toplam_urun
 from manav
 group by isim, urun_adi
 order by isim desc;
-
-
