@@ -110,7 +110,7 @@ veli_isim VARCHAR(50),
 yazili_notu int
 );
    
-INSERT INTO talebeler VALUES(123, 'Ali Can', 'Hasan',75);
+talebelerINSERT INTO talebeler VALUES(123, 'Ali Can', 'Hasan',75);
 INSERT INTO talebeler VALUES(124, 'Merve Gul', 'Ayse',85);
 INSERT INTO talebeler VALUES(125, 'Kemal Yasa', 'Hasan',85);
 INSERT INTO talebeler VALUES(126, 'Nesibe Yılmaz', 'Ayse',95);
